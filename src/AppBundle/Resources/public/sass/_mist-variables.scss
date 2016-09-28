@@ -1,0 +1,41 @@
+//Typography
+
+$heading-color: #3b3b3b;
+$text-color: #898888;
+$light-on-dark: #ffffff;
+$small-fonts: 12px;
+$branding-hover: #3570b1;
+$h-tag-margin: 20px;
+
+//Variable for highlight colours, used extensivly through the site
+
+$branding: #3b8ced;
+$footer-background: #332f2f;
+
+//Navigation
+
+$navbar-background: #ffffff;
+
+//Variable for areas with feint grey backgrounds
+
+$subtle-background: #f9f9f9;
+
+//Borders and hero unit borders
+
+$borders: 1px solid #efefef;
+$hero-unit-borders: 1px solid #e3e3e3;
+
+//Padding, used to give spacing above and below areas
+
+$padding-top: 30px;
+$padding-bottom: 50px;
+$padding-top-small: 30px;
+$padding-bottom-small: 10px;
+
+//Animation speed and style for any hoverable element
+
+$slow-hover: all 0.5s ease-in-out;
+
+//Border radius master value, used with SASS maths to alter sizing
+
+$border-radius-base: 10px;

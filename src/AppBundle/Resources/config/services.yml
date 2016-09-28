@@ -1,0 +1,6 @@
+parameters:
+services:
+    app.twig_extension:
+        class: AppBundle\Twig\TemplateExtension
+        tags:
+            - { name: twig.extension }

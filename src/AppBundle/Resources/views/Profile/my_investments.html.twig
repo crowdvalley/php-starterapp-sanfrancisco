@@ -1,0 +1,78 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid content-breather-small" id="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4>My Investments</h4>
+                </div><!-- End of column one -->
+                <div class="col-md-6 col-sm-6 text-right">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ path('homepage') }}">Home</a></li>
+                        <li class="active">My Investments</li>
+                    </ol>
+                </div><!-- End of column two -->
+            </div><!-- End of row -->   
+        </div><!-- End of container -->
+    </div><!-- End of fluid container -->
+
+    <div class="container">
+        <div class="row">
+			{% if(investments|length == 0) %}
+                <div style="padding: 15px 30px; background-color: #fdfadf; color: #000 !important; margin-bottom: 30px;">
+                    You currently have no investments. Please check back when you have made an investment to monitor your investments.
+                </div>
+            {% endif %}
+            {% set n = 1 %}
+			{% for investment in investments %}
+                <div class="col-md-4">
+                    <div class="plan-wrap">
+                        <table class="table">
+                        <tbody>
+                            <tr>
+                                <td><a href="{{ path('view_company', { 'offering_id': investment.offeringId }) }}">{{ investment.organizationName }}</a></td>
+                                <td class="text-right">
+									{{ investment.custom.tax_scheme|default('EIS') }}
+								</td>
+                            </tr>
+                            <tr>
+                                <td>Number of Shares</td>
+                                <td class="text-right">£ {{ investment.numberOfShares|number_format }}</td>
+                            </tr>
+                            <tr>
+                                <td>Investment Amount</td>
+                                <td class="text-right">{{ investment.investmentAmount }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Offer Status</td>
+                                <td class="text-right">
+                                    {% if investment.lifeCycleStage == 1 %}
+                                        Rejected
+                                    {% elseif investment.lifeCycleStage == 2 %}
+                                        Approved
+                                    {% elseif investment.lifeCycleStage == 3 %}
+                                        Withdrawn
+                                    {% elseif investment.lifeCycleStage == 4 %}
+                                        Settled
+                                    {% else %}
+                                        Open
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+                {% if(n == 3) %}
+                    <div class="col-md-12 divider-line"><span></span></div>
+                    {% set n = 0 %}
+                {% endif %}
+                {% set n = n+1 %}
+            {% endfor %}
+
+        </div>
+        
+    </div><!-- End of container -->
+
+{% endblock %}

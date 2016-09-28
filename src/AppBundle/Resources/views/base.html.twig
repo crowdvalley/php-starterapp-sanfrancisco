@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}San Francisco Theme{% endblock %}</title>
+    <!-- core CSS -->
+    <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/prettyPhoto.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/vidall.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/outline-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/lightbox.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/layerslider.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/animations.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/bootstrap.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+    <!--[if lt IE 9]>
+    <script src="{{ asset('bundles/app/js/html5shiv.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/respond.min.js') }}"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="{{asset('bundles/app/images/ico/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('bundles/app/images/ico/apple-touch-icon-144-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('bundles/app/images/ico/apple-touch-icon-114-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('bundles/app/images/ico/apple-touch-icon-72-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('bundles/app/images/ico/apple-touch-icon-57-precomposed.png') }}">
+</head>
+<body>
+{% block navigation %}
+    <header id="header">
+        <nav class="navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="{{asset('bundles/app/images/crowdvalley_logo_small.gif')}}" alt="" style="height: 100px"></a>
+                </div>
+
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li {% if menu_item|default() == 'homepage' %}class="active"{% endif %}><a href="{{ path('homepage') }}">Home</a></li>
+                        <li {% if menu_item|default() == 'investment_opportunities' %}class="active"{% endif %}><a href="{{ path('investment_opportunities') }}">Invest</a></li>
+                        <li {% if menu_item|default() == 'my_investments' %}class="active"{% endif %}><a href="{{ path('my_investments') }}">My Investments</a></li>
+                        <li {% if menu_item|default() == 'contact_us' %}class="active"{% endif %}><a href="{{ path('contact_us') }}">Contact</a></li>
+                        {% if app.session.has('authenticated') and app.session.get('authenticated') %}
+                        <li {% if menu_item|default() == 'my_profile' %}class="active"{% endif %}><a href="{{ path('my_profile') }}">My Profile</a></li>
+                        <li {% if menu_item|default() == 'sign_out' %}class="active"{% endif %}><a href="{{ path('logout') }}">Sign Out</a></li>
+						{% else %}
+                        <li {% if menu_item|default() == 'sign_in' %}class="active"{% endif %}><a href="#modal-login" data-toggle="modal" data-target="#modal-login" class="color-white">Sign In</a></li>
+                        <li {% if menu_item|default() == 'sign_up' %}class="active"{% endif %}><a href="#modal-signup" data-toggle="modal" data-target="#modal-signup" class="color-white">Sign Up</a></li>
+                    	{% endif %}
+                    </ul>
+                </div>
+            </div><!--/.container-->
+            <br>
+        </nav><!--/nav-->
+
+    </header><!--/header-->
+{% endblock %}
+{% block notice %}
+    <div class="">
+        {% if app.session.flashbag.has('errors') %}
+            <div class="alert alert-danger" style="margin-bottom:0">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {% for errorMessage in app.session.flashbag.get('errors') %}
+                    {{ errorMessage|raw() }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if app.session.flashbag.has('info') %}
+            <div class="alert alert-info" style="margin-bottom:0">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {% for infoMessage in app.session.flashbag.get('info') %}
+                    {{ infoMessage }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block body %}
+{% endblock %}
+{% block footer %}
+<div class="container-fluid content-breather" id="footer">
+ 	<div class="container">
+ 		<div class="row">
+ 			<div class="col-md-4" id="map-background">
+        <div class="text-center" style="padding-top: 50px;">
+          <img src="{{asset('bundles/app/images/cv_logo_grey.png')}}" alt="footer logo">
+        </div><!-- End of column one -->
+
+ 			</div><!-- End of column one -->
+	 		<div class="col-md-4">
+        <h3 class="text-underline">Find us</h3>
+        <address>
+
+        </address>
+        <p>
+        </p>
+
+			</div><!-- End of column two -->
+			<div class="col-md-4">
+				<h3 class="text-underline">Around the web</h3>
+				<div class="icon-wrap">
+				</div><!-- End of icon wrap -->
+			</div><!-- End of column three -->
+		</div><!-- End of row -->
+ 	</div><!-- End of container -->
+</div><!-- End of fluid container --> 
+
+
+{% endblock %}
+<!-- begin:modal-signin -->
+<div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            {{ render(controller('AppBundle:Public:signIn')) }}
+
+        </div>
+    </div>
+</div>
+<!-- begin:modal-signup -->
+<div class="modal fade" id="modal-signup" tabindex="-1" role="dialog" aria-labelledby="modal-signup" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            {{ render(controller('AppBundle:Public:signUp')) }}
+        </div>
+    </div>
+</div>
+<script src="{{ asset('bundles/app/js/jquery.js') }}"></script>
+<script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/jquery.prettyPhoto.js') }}"></script>
+<script src="{{ asset('bundles/app/js/jquery.isotope.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/moment/moment.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/main.js') }}"></script>
+<script src="{{ asset('bundles/app/js/wow.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/css3-animate-it.js') }}"></script>
+<script src="{{ asset('bundles/app/js/owl.carousel.js') }}"></script>
+<script src="{{ asset('bundles/app/js/bootstrap-hover-dropdown.js') }}"></script>
+<script src="{{ asset('bundles/app/js/modernizr.js') }}"></script>
+<script src="{{ asset('bundles/app/js/greensock.js') }}"></script>
+<script src="{{ asset('bundles/app/js/layerslider.transitions.js') }}"></script>
+<script src="{{ asset('bundles/app/js/layerslider.kreaturamedia.jquery.js') }}"></script>
+<script src="{{ asset('bundles/app/js/backstretch.js') }}"></script>
+<script src="{{ asset('bundles/app/js/scripts.js') }}"></script>
+{% block javascripts %}{% endblock %}
+</body>
+</html>

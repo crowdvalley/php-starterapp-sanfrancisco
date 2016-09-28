@@ -1,0 +1,52 @@
+imports:
+    - { resource: config.yml }
+    - { resource: parameters_prod.yml }
+    - { resource: services_prod.yml }
+
+framework:
+    session:
+        gc_probability: 0
+
+#framework:
+#    validation:
+#        cache: apc
+
+#doctrine:
+#    orm:
+#        metadata_cache_driver: apc
+#        result_cache_driver: apc
+#        query_cache_driver: apc
+
+monolog:
+    handlers:
+        main:
+            #type:  stream
+            type:  rotating_file
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+            max_files: 10
+        custom:
+            type: service
+            #id: bab_logentries.handler
+            id: monolog.handler.logentries
+            level: error
+        firephp:
+            type:  firephp
+            level: info
+        chromephp:
+            type:  chromephp
+            level: info
+
+
+#monolog:
+#    handlers:
+#        main:
+#            type:         fingers_crossed
+#            action_level: error
+#            handler:      nested
+#        nested:
+#            type:  stream
+#            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+#            level: debug
+#        console:
+#            type:  console

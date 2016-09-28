@@ -1,0 +1,255 @@
+{% extends 'CVSeismicBundle::seismic_network.html.twig' %}
+
+{% block bodyContent %}
+	<div class="container-fluid content-breather-small" id="breadcrumbs">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-md-6">
+					<h4>About us</h4>
+				</div><!-- End of column one -->
+				
+				<div class="col-md-6 text-right">
+					<ol class="breadcrumb">
+						<li><a href="{{ path('cv_seismic_home', {'network': network.urlname}) }}">Home</a></li>
+						<li class="active">About us</li>
+					</ol>
+				</div><!-- End of column two -->
+			</div><!-- End of row -->	
+		</div><!-- End of container -->
+	</div><!-- End of fluid container -->
+
+	<div class="container">
+		<div class="row">
+		
+			<div class="col-md-4">
+				<img src="{{asset('bundles/cvseismic/images/avatars/office.jpg')}}" alt="Image of office meeting">
+			</div>
+			<div class="col-md-8">
+			
+				<h4>What we do... <em class="small branding">And how we started.</em></h4>
+				
+				<h6>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque dui, 
+					eleifend nec nulla eget, ornare tincidunt elit.
+				</h6>
+				
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+					Sed neque dui, eleifend nec nulla eget, ornare tincidunt elit. 
+					Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+				</p>
+				
+				<p> 	
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque dui, 
+					eleifend nec nulla eget, ornare tincidunt elit. Vestibulum ante ipsum primis in faucibus 
+					orci luctus et ultrices posuere cubilia Curae; Nam placerat nunc in sagittis rhoncus. 
+					In vestibulum mollis libero, vitae faucibus odio iaculis vitae. Pellentesque a tempus 
+					nulla. Maecenas pharetra odio eget suscipit sodales. Mauris gravida, 
+					enim et rhoncus luctus, lacus felis vulputate velit, ut convallis nisi purus gravida risus.
+				</p>
+
+			</div><!-- End of column one -->
+		</div><!-- End of row -->
+
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+				<h4>Our values</h4>
+				<hr>
+			</div>
+			<div class="col-md-4">
+				<i class="icons branding icon-lg pull-left icon-background-pink" data-icon="&#xe095;"></i>
+				<div class="content-push-left">
+					<h6>Results driven</h6>		
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+					Sed neque dui, eleifend nec.</p>
+				</div><!-- End of content push -->
+			</div><!-- End of column -->
+			
+			<div class="col-md-4">
+				<i class="icons branding icon-lg pull-left icon-background-green" data-icon="&#xe094;"></i>
+				<div class="content-push-left">
+					<h6>On Time</h6>		
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+					Sed neque dui, eleifend nec.
+					</p>
+				</div><!-- End of content push -->
+			</div><!-- End of column -->
+
+			<div class="col-md-4">
+				<i class="icons branding icon-lg pull-left icon-background-brown" data-icon="&#xe05d;"></i>
+				<div class="content-push-left">
+					<h6>Supported</h6>		
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+					Sed neque dui, eleifend nec.
+					</p>
+				</div><!-- End of content push -->
+			</div><!-- End of column -->
+			
+			<div class="col-md-4">
+				<i class="icons branding icon-lg pull-left icon-background-yellow" data-icon="&#xe092;"></i>
+				<div class="content-push-left">
+					<h6>Powerful</h6>		
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+					Sed neque dui, eleifend nec.
+					</p>		
+				</div><!-- End of content push -->
+			</div><!-- End of column -->
+			
+			<div class="col-md-4">
+				<i class="icons branding icon-lg pull-left icon-background-orange" data-icon="&#xe004;"></i>
+				<div class="content-push-left">
+					<h6>Media Savvy</h6>		
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+						Sed neque dui, eleifend nec.
+					</p>
+				</div><!-- End of content push -->
+			</div><!-- End of column -->
+			
+			<div class="col-md-4">
+				<i class="icons branding icon-lg pull-left icon-background-blue" data-icon="&#xe078;"></i>
+				<div class="content-push-left">
+					<h6>Optimistic</h6>		
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque dui, eleifend nec.</p>
+				</div><!-- End of content push -->
+			</div><!-- End of column -->
+				
+			<div class="col-md-12">
+				<hr>
+			</div><!-- End of column -->
+		</div><!-- End of row -->
+		<div class="row">
+			<div class="col-md-6">
+				<h4>Join Our Team</h4>
+				<hr>
+				<table class="table table-striped">
+				<!-- Category headings -->
+					<tr>
+						<td>REF #</td>
+						<td>POSITION</td>
+						<td>LOCATION</td>
+					</tr>
+					<!-- First job -->
+					<tr>
+						<td>1101</td>
+						<td>Sales Executive</td>
+						<td>New York</td>
+					</tr>
+					<!-- Second job -->
+					<tr>
+						<td>1102</td>
+						<td>Business development manager</td>
+						<td>San Francisco</td>
+					</tr>
+					<!-- Third job -->
+					<tr>
+						<td>1103</td>
+						<td>Creative Director</td>
+						<td>Chicago</td>
+					</tr>
+					<!-- Fourth job -->
+					<tr>
+						<td>1104</td>
+						<td>SEO Stratagist</td>
+						<td>California</td>
+					</tr>
+					<!-- Fifth job -->
+					<tr>
+						<td>1105</td>
+						<td>Sales Coordinator</td>
+						<td>San Francisco</td>
+					</tr>
+					<!-- Sixth job -->
+					<tr>
+						<td>1106</td>
+						<td>Office Manager</td>
+						<td>Austin</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-6">
+				<h4>International Relationships</h4>
+				<hr>
+				<ul class="list-unstyled wire-bullets">
+					<li>
+						<i class="icon icon-lg branding" data-icon="&#xe091;"></i>  
+						In vestibulum mollis libero, vitae faucibus odio iaculis Libero, 
+						vitae faucibus odio Libero, vitae faucibus odio
+					</li>
+					<li>
+						<i class="icon icon-lg branding" data-icon="&#xe091;"></i>  
+						Libero, vitae faucibus odio iaculis mollis libero enim et rhoncus luctus,
+						lacus felis vulputate velit, ut convallis nisi
+					</li>
+					<li>
+						<i class="icon icon-lg branding" data-icon="&#xe091;"></i>  
+						In vitae faucibus odio iaculis molli libero enim et rhoncus luctus, 
+						lacus felis vulputate velit, ut convallis nisi
+					</li>
+					<li>
+						<i class="icon icon-lg branding" data-icon="&#xe091;"></i>  
+						enim et rhoncus luctus, lacus felis vulputate velit, ut convallis nisi In 
+						vestibulum mollis libero, vitae faucibus odio iaculis
+					</li>
+					<li>
+						<i class="icon icon-lg branding" data-icon="&#xe091;"></i>  
+						In vestibulum mollis libero, vitae faucibus odio iaculis Libero, 
+						vitae faucibus odio Libero, vitae faucibus odio
+					</li>
+				</ul>
+			</div><!-- End of column  -->
+		</div><!-- End of row -->
+		<div class="row">
+			<hr>
+		</div>
+	</div><!-- End of container -->
+	<div class="container">
+		<div class="col-md-12 text-center">
+			<h4>Our Partners</h4>
+		</div><!-- End of heading -->
+		<div class="row">
+			<div class="col-md-2 col-xs-2">
+				<div class="logo-holder">
+					<img src="{{asset('bundles/cvseismic/images/client_logos/logo1.png')}}" alt="Logo image">
+				</div><!-- End of logo holder one -->
+			</div><!-- End of column -->
+			<div class="col-md-2 col-xs-2">
+				<div class="logo-holder">
+					<img src="{{asset('bundles/cvseismic/images/client_logos/logo2.png')}}" alt="Logo image">
+				</div><!-- End of logo holder one -->
+			</div><!-- End of column -->
+			<div class="col-md-2 col-xs-2">
+				<div class="logo-holder">
+					<img src="{{asset('bundles/cvseismic/images/client_logos/logo3.png')}}" alt="Logo image">
+				</div><!-- End of logo holder one -->
+			</div><!-- End of column -->
+			<div class="col-md-2 col-xs-2">
+				<div class="logo-holder">
+					<img src="{{asset('bundles/cvseismic/images/client_logos/logo4.png')}}" alt="Logo image">
+				</div><!-- End of logo holder one -->
+			</div><!-- End of column -->
+			<div class="col-md-2 col-xs-2">
+				<div class="logo-holder">
+					<img src="{{asset('bundles/cvseismic/images/client_logos/logo5.png')}}" alt="Logo image">
+				</div><!-- End of logo holder one -->
+			</div><!-- End of column -->
+			<div class="col-md-2 col-xs-2">
+				<div class="logo-holder">
+					<img src="{{asset('bundles/cvseismic/images/client_logos/logo6.png')}}" alt="Logo image">
+				</div><!-- End of logo holder one -->
+			</div><!-- End of column -->
+		</div><!-- End of row -->
+	</div><!-- End of container -->
+	<br />
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('bundles/cvseismic/js/bootstrap/bootstrap.js') }}"></script>
+	<script src="{{ asset('bundles/cvseismic/js/css3-animate-it.js') }}"></script>
+	<script src="{{ asset('bundles/cvseismic/js/appear.js') }}"></script>
+	<script src="{{ asset('bundles/cvseismic/js/bootstrap-hover-dropdown.js') }}"></script>
+	<script src="{{ asset('bundles/cvseismic/js/scripts.js') }}"></script>
+{% endblock %}

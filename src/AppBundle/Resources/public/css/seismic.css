@@ -1,0 +1,125 @@
+.m0{
+    margin: 0px;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+.nav-left.nav > li > a:hover{
+    color: #333;
+}
+.mw60px{
+    max-width: 60px;
+}
+.error {color: #ff0000;}
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+.fileinput-button input {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 34px;
+	opacity: 0;
+	cursor: pointer;
+	direction: ltr;
+}
+.upload_status {
+    display:none;
+    margin: 10px 0 0;
+}
+.fileinput-button .btn.btn-primary {
+    width: 100%;
+}
+.upload-group .fileinput-button{
+    display: inline-block;
+    width: 200px;
+}
+.overlay-wrapper .img{
+    border: 1px solid #efefef;
+    background-color: #efefef;
+    border-bottom: 0px;
+    text-align: center;
+    height: 220px;
+}
+.overlay-wrapper .img img{
+    border: none;
+}
+.property-price {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #fe9900;
+    display: inline-block;
+    color: #fff;
+    padding: 0px 10px;
+    opacity: .9;
+}
+.property-price h5{
+    color: #fff;
+    margin: 0px;
+    padding: 10px;
+}
+.branding a{
+    color: #3b8ced;
+}
+.font13{
+    font-size: 13px;
+}
+.bright-img{
+    margin-top: -1000px!important;
+}
+.dp-table{
+    display: table;
+    height: 200px;
+    width: 100%;
+
+}
+.dp-tablecell{
+    display: table-cell;
+    vertical-align: middle;
+}
+.dp-tablecell img{
+    margin: 0 auto;
+    max-height: 200px;
+}
+.inv-progress{
+    position: absolute;
+    width: 89%;
+    bottom: 10px;
+    margin: 10px;
+}
+.item .caption.inv-caption{
+    position: relative;
+    padding-bottom: 55px;
+}
+.plan-wrap{
+    /*
+     margin-bottom: 30px;
+     padding: 20px;
+    background-color: #f4f4f4;*/
+}
+.plan-wrap table{
+    margin-bottom: 0px;
+}
+.d-inline{
+    display: inline-block;
+}
+
+.divider-line:before,.divider-line:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+.divider-line span{
+    display: block;
+    border-top: 1px solid #DADADA;
+    height: 1px;
+    margin: 50px 0;
+}

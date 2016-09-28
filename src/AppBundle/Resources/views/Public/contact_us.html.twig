@@ -1,0 +1,65 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}Contact us{% endblock %}
+
+{% block body %}
+	<div class="container-fluid content-breather-small" id="breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+					<h4>contact us</h4>
+				</div><!-- End of column one -->
+				<div class="col-md-6 col-sm-6 text-right">
+					<ol class="breadcrumb">
+						<li><a href="{{ path('homepage') }}">Home</a></li>
+						<li class="active">Contact Us</li>
+					</ol>
+				</div><!-- End of column two -->
+			</div><!-- End of row -->	
+		</div><!-- End of container -->
+	</div><!-- End of fluid container -->
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="row">
+	        		<div class="col-md-10 col-sm-12 col-md-offset-1">
+	        	    	<div class="contact-info">
+	        	            <div class="col-sm-4">
+	        	            	<div class="contact-box">
+	        	                	<i class="fa fa-map-marker"></i>
+	        	                    <h4>Address</h4>
+	        	                    <address>
+                                        One Market Plaza, Spear Tower<br/>
+										San Francisco, CA 94105<br/>
+										UNITED STATES
+	        	                    </address>
+	        	                </div>
+	        	            </div>
+	        	            <div class="col-sm-4">
+	        	            	<div class="contact-box">
+	        	                    <i class="fa fa-phone"></i>
+	        	                    <h4>Call us</h4>
+	        	                    <address>
+                                        +1 (415) 580 0087
+	           	                	</address>
+		           	            </div>
+		           	        </div>
+		           	        <div class="col-sm-4">
+		           	         	<div class="contact-box">
+		           	                <i class="fa fa-envelope"></i>
+		           	                <h4>Email</h4>
+		           	                <address>
+                                        <a href="mailto:sales@crowdvally.com" style="color: #898888">sales@crowdvally.com</a>
+		           	                </address>
+		           	            </div>
+		           	        </div>
+	           	    	</div>
+	           		</div>
+	        	</div>
+				<hr>
+			</div>
+		</div>
+	</div><!-- End of container -->
+
+{% endblock %}

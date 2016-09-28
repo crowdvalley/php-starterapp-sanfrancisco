@@ -1,0 +1,124 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}Complete Registration{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('bundles/app/css/s3.upload.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+    <div class="container-fluid content-breather-small" id="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4>Complete registration</h4>
+                </div><!-- End of column one -->
+                <div class="col-md-6 col-sm-6 text-right">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ path('homepage') }}">Home</a></li>
+                        <li class="active">Complete Registration</li>
+                    </ol>
+                </div><!-- End of column two -->
+            </div><!-- End of row -->   
+        </div><!-- End of container -->
+    </div><!-- End of fluid container -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="completeRegistration">
+                    <form action="{{ path('complete_registration') }}" role="form" name="completeRegistrationForm" id="completeRegistrationForm" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+								{% set user_first_name = '' %}
+								{% if app.session.get('api/user').first_name is defined %}
+									{% set user_first_name = app.session.get('api/user').first_name %}
+								{% endif %}
+								{% set user_last_name = '' %}
+								{% if app.session.get('api/user').last_name is defined %}
+									{% set user_last_name = app.session.get('api/user').last_name %}
+								{% endif %}
+								<div class="form-group input-group">
+									<label for="firstName">{% trans %}First Name{% endtrans %}<span class="asterisk-required">*</span></label>
+                                    {{ form_widget(form.given_name, {'attr':{'class':'form-control', 'required':'required'}}) }}
+                                </div>
+								<div class="form-group input-group">
+									<label for="lastName">{% trans %}Last Name{% endtrans %}<span class="asterisk-required">*</span></label>
+                                    {{ form_widget(form.family_name, {'attr':{'class':'form-control', 'required':'required'}}) }}
+                                </div>
+                                <div class="form-group input-group">
+                                    <label for="lastName">{% trans %}Biography{% endtrans %}</label>
+                                    {{ form_widget(form.biography, {'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="form-group input-group">
+                                    <label for="phoneNumber">{% trans %}Phone number{% endtrans %}<span class="asterisk-required">*</span></label>
+                                    {{ form_widget(form.phone_1, {'attr':{'class':'form-control', 'required':'required'}}) }}
+                                </div>
+                                <div class="form-group input-group">
+                                    <label for="birthday">{% trans %}Date of birth{% endtrans %}<span class="asterisk-required">*</span></label>
+                                    {{ form_widget(form.birth_date, {'attr':{'class':'form-control', 'required':'required'}}) }}
+                                </div>
+								<div class="form-group input-group">
+									<label for="country">{% trans %}Nationality{% endtrans %}<span class="asterisk-required">*</span></label>
+                                    {{ form_widget(form.nationality, {'attr':{'class':'form-control', 'required':'required'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group input-group">
+                                    <label class=""><strong>Registered address </strong><span class="asterisk-required">*</span></label>
+                                    {{ form_widget(form.address.building, {'attr':{'class':'form-control', 'placeholder': 'Address Line 1 (Street address, P.O. Box, Company Name, etc.)', 'required':'required'}}) }}
+                                </div>
+                                <div class="form-group input-group">
+                                    {{ form_widget(form.address.street_address, {'attr':{'class':'form-control', 'placeholder': 'Address Line 2 (Apartment, suite, unit, building, floor, etc.)', 'required':'required'}}) }}
+                                </div>
+								<div class="form-group input-group">
+                                    {{ form_widget(form.address.city, {'attr':{'class':'form-control', 'placeholder': 'City', 'required':'required'}}) }}
+                                </div>
+                                <div class="form-group input-group">
+                                {{ form_widget(form.address.region, {'attr': {'class': 'form-control', 'placeholder': 'State/Province/Region', 'required':'required'} }) }}
+                                </div>
+                                <div class="form-group input-group">
+                                    {{ form_widget(form.address.postal_code, {'attr':{'class':'form-control', 'placeholder': 'Postal Code', 'required':'required'}}) }}
+                                </div>
+								<div class="form-group input-group">
+									<label for="postalCode">{% trans %}National Insurance Number{% endtrans %}<span class="asterisk-required">*</span></label>
+                                    {{ form_widget(form.tax_id, {'attr':{'class':'form-control', 'required':'required'}}) }}
+                                </div>
+								<div class="form-group input-group">
+                                    <label for="phoneNumber">{% trans %}Alternate Phone Number{% endtrans %}</label>
+                                    {{ form_widget(form.phone_2, {'attr':{'class':'form-control'}}) }}
+                                </div>
+								<div class="form-group input-group">
+                                    <label for="phoneNumber">{% trans %}Alternate Email{% endtrans %}</label>
+                                    {{ form_widget(form.info.alt_email, {'attr':{'class':'form-control'}}) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="status"></div>
+                        <div class="text-center">
+                            <button id="saveInfoBtn" type="submit" class="btn btn-primary">Save Your Information</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- End of container -->
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/app/js/s3.upload.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/moment/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/jquery.validate.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/bootstrap-datetimepicker.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#user_type_birth_date').datetimepicker({
+                format: 'YYYY-MM-DD'
+            });
+            $("#completeRegistrationForm").validate();
+        });
+
+    </script>
+{% endblock %}

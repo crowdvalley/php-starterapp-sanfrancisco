@@ -1,0 +1,102 @@
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display:block;
+}
+.fileinput-button .btn-primary{
+  width:100% !important;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 20px;
+  direction: ltr;
+  cursor: pointer;
+  width:100%;
+  height: 34px;
+}
+.upload_text{
+  color: #5bc0de;
+}
+/* Fixes for IE < 8 */
+@media screen\9 {
+  .fileinput-button input {
+    filter: alpha(opacity=0);
+    font-size: 100%;
+    height: 100%;
+  }
+}
+
+.progress_bar {
+  margin: 10px 0;
+  font-size: 14px;
+  clear: both;
+  opacity: 0;
+  -moz-transition: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  -webkit-transition: opacity 1s linear;
+  /*-moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+  -webkit-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+  box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;*/
+  text-align: center;
+    border: 1px solid #ddd;
+    padding: 1px;
+}
+.progress_bar.loading {
+  opacity: 1.0;
+}
+.progress_bar .percent {
+  background-color: #26a4d9;
+  /*background-image: -webkit-gradient(linear, left top, left bottom, from(#a5df41), to(#4ca916));
+  background-image: -webkit-linear-gradient(top, #a5df41, #4ca916);
+  background-image: -moz-linear-gradient(top, #a5df41, #4ca916);
+  background-image: -ms-linear-gradient(top, #a5df41, #4ca916);
+  background-image: -o-linear-gradient(top, #a5df41, #4ca916);
+  background-image: linear-gradient(top, #a5df41, #4ca916);*/
+  height: auto;
+  width: 0;
+  color: #fff;
+  /*-moz-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;
+  -webkit-box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;
+  box-shadow: 0 5px 5px rgba(255, 255, 255, .7) inset, 0 -5px 5px rgba(255, 255, 255, .7) inset;*/
+  -webkit-transition: width .4s ease-in-out;
+  -moz-transition: width .4s ease-in-out;
+  -ms-transition: width .4s ease-in-out;
+  -o-transition: width .4s ease-in-out;
+  transition: width .4s ease-in-out;
+  /*-moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;*/
+}
+.upload_status {
+  display:none;
+  margin: 10px 0 0;
+}
+
+.textField .validate-message,
+.groupField .validate-message
+{padding: 3px 0; color: #ff2222;}
+
+.logoUpload .networkImg{
+  float: left;
+  max-width: 150px;
+}
+.logoUpload .fileinput-button{
+  float: right;
+  width: 180px;
+}
+.remove-logo{
+  margin:-1px 4px 0;
+  font-size: 10px;
+  text-transform: uppercase;
+  float: left;
+}
+

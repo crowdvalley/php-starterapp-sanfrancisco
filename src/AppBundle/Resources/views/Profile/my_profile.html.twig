@@ -1,0 +1,123 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}My Profile{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('bundles/app/css/s3.upload.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid content-breather-small" id="breadcrumbs">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-md-6">
+					<h4>My Account</h4>
+				</div><!-- End of column one -->
+				
+				<div class="col-md-6 text-right">
+					<ol class="breadcrumb">
+						<li><a href="{{ path('homepage') }}">Home</a></li>
+						<li class="active">My account</li>
+					</ol>
+				</div><!-- End of column two -->
+			</div><!-- End of row -->	
+		</div><!-- End of container -->
+	</div><!-- End of fluid container -->
+
+	<div class="container">
+		<div class="row">
+            <div class="col-md-2 nav-sidebar heading-font">
+                <div class="avatar mb10">
+					{% set image = self.image.url|default(asset('bundles/app/images/crowdvalley_logo_small.gif')) %}
+					<img src="{{ image }}" alt="" style="width: 100%"/>
+                    <a class="btn btn-block branding-background btn-sm" href="#modal-editprofile" data-toggle="modal" data-target="#modal-editprofile">Update Profile Info</a>
+	        		<button type="submit" id="" class="btn btn-block branding-background btn-sm">Upload KYC Document</button>
+                </div>
+            </div>
+            <div class="col-md-9" style="padding-left: 40px" role="tabpanel">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active in" id="overviewTab">
+                        <h1 class="m0 mb10" id="person_name">{% if self.fullName is defined %}{{ self.fullName }}{% endif %}</h1>
+                        <div class="mb20 gray">
+                            <div class=""><i class="glyphicon glyphicon-user"></i> &nbsp;
+								{% if self.additionalType is defined %}{{ self.additionalType }}{% endif %}
+							</div>
+                            <div><i class="fa fa-envelope"></i> &nbsp;
+								{% if self.email is defined and self.email != '(none)' %}{{ self.email }} {% endif %}
+							</div>
+                            <div><i class="fa fa-phone"></i> &nbsp;
+								{% if self.phone1 is defined and self.phone1 != '(none)' %}{{ self.phone1 }} {% endif %}
+							</div>
+                            <div><i class="glyphicon glyphicon-map-marker"></i> &nbsp;
+								{% if self.address is defined %}
+									{{ self.address.building|default('') }}
+									{{ self.address.streetAddress|default('') }},
+									{{ self.address.region|default('') }},
+									{{ self.address.city|default('') }}
+									{{ self.address.postalCode|default('') }}
+								{% endif %}                                
+							</div>
+                        </div>
+                        <div class="mb20">
+                            <h3 class="heading-font">Biography</h3>
+                            <div class="mb20 gray">
+                                <p class="m0" id="bio_info">
+									{% if self.biography != '' %}
+										{{ self.biography | raw }}
+									{% else %}
+										No biography found
+									{% endif %}
+								</p>
+                            </div>
+                        </div>         
+                        <div class="mb20">
+                            <h3 class="heading-font">Account Information</h3>
+                            <div class="mb20 gray">
+								<b>Date of Birth: </b>{{self.birthDate|date('d/m/Y')|default('No date of birth found') }}<br>
+								<b>Alternative Phone: </b>{{self.phone2|default('No alternative phone number found') }}<br>
+								<b>National Insurance Number: </b>{{ self.taxId|default('No National Insurance Number found') }}<br>
+                            </div>
+                        </div>  
+                        <div class="mb20">
+                            <h3 class="heading-font">Investment Preferences</h3>
+                            <div class="mb20 gray">
+								TBC
+                            </div>
+                        </div>                                                                 
+                        <div class=" upload-group">
+                            <h3 class="heading-font">Documents</h3>                        
+                            <div class="mb20">
+								<table class="table table-responsive">
+									<thead>
+									  <tr>
+										<th>Uploaded</th>
+										<th>Type</th>
+										<th>Name</th>
+										<th>Action</th>
+									  </tr>
+									</thead>
+									<tbody>
+										{% for document in documents|default([]) %}
+											{% if document.tag == 'KYC' %}
+												<tr>
+													<td>{{ document.createdAt|date('d/m/Y') }}</td>
+													<td>{{ document.tag|default() }}</td>
+													<td>{{ document.fileName|default() }}</td>
+													<td><a class="btn btn-default" href="{{ document.url }}" target="_blank">Download</a></td>
+												</tr>
+											{% endif %}
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div><!-- End of row -->
+
+	</div><!-- End of container -->
+
+{% endblock %}
+

@@ -1,0 +1,283 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}{{ organization.displayName|default() }}{% endblock %}
+
+{% block body %}
+
+	<div class="container-fluid content-breather-small" id="breadcrumbs">
+		<div class="container">
+			<div class="row">		
+				<div class="col-md-4 col-sm-4">
+					<h4 style="float:left; padding:0px; margin-top: 10px;">{{ offering.name }}</h4>
+				</div><!-- End of column -->
+				<div class="col-md-8 col-sm-8 text-right">
+					<ol class="breadcrumb">
+						<li><a href="{{ path('homepage') }}">Home</a></li>
+						<li><a href="{{ path('investment_opportunities') }}">Live Investment Opportunities</a></li>
+						<li class="active">{{ offering.name }}</li>
+						&nbsp;&nbsp;<a href="#modal-requestinfo" class="btn btn-success" data-toggle="modal" data-target="#modal-requestinfo">Request More Information</a>
+					</ol>
+				</div><!-- End of column two -->
+			</div><!-- End of row -->	
+		</div><!-- End of container -->
+	</div><!-- End of fluid container -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5">
+				<img src="{{ organization.logo.url|default(asset('bundles/app/images/crowdvalley_logo_small.gif')) }}">
+			</div><!-- End of column -->
+			
+			<!-- Start of portfolio sidebar -->
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-md-7">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ offering.raisedPercent }}" aria-valuemin="0" aria-valuemax="100" style="width:{{offering.raisedPercent}}%">
+                                <span style="color:black">{{ offering.raisedPercent }}% Funded</span>
+                            </div>
+                        </div>
+                        <span class="small branding" style="margin:0px 5px">
+                            <i class="icon" data-icon="&#xe022;"></i>
+                            <em>{{ organization.location }}</em></span>
+                        <span class="small branding" style="margin:0px 5px">
+                            <i class="icon" data-icon="&#xe082;"></i>
+                            <em>
+								{% if offering.lifeCycleStage != 6 %}
+									Funding Round is not open
+								{% else %}
+									{% if offering.close_date != '' %}
+										{{ offering.close_date|days_left }} days left
+									{% else %}
+										N/A
+									{% endif %}
+								{% endif %}
+                            </em>
+                        </span>
+                        <span class="small branding" style="margin:0px 5px">
+                            <i class="icon" data-icon="&#xe091;"></i>
+                            <em>{{ offering.equityOffered }}% equity offered</em></span>
+						<br/>
+                        <span class="small branding" style="margin:0px 5px">
+                            <i class="icon" data-icon="&#xe08a;"></i>
+                            <em>
+                                Raised £{{ offering.amountRaised|number_format }}
+                            </em>
+                        </span>
+                        <span class="small branding" style="margin:0px 5px">
+                            <i class="icon" data-icon="&#xe08a;"></i>
+                            <em>
+                                External Commitments
+								{% if offering.externalCommitments == 0 %}
+									N/A
+								{% else %}
+									£{{ offering.externalCommitments|number_format }}
+								{% endif %}
+                            </em>
+                        </span>
+
+						<hr>
+						<p>
+							{% if organization.detailedDescription != '(none)' %}{{ organization.detailedDescription }}{% endif %}
+						</p>
+						
+						<!-- Start of sidebar accordion -->
+						
+						<div class="panel-group" id="accordion">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<span class="accordian-caret">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+												Concept
+											</a>
+										</span>
+									</h4>
+								</div><!-- End of panel heading -->
+								<div id="collapseOne" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>
+											{{ organization.custom.concept|default('') }}
+										</p>
+									</div><!-- End of panel body -->
+								</div><!-- End of panel collapse -->
+							</div><!-- End of first panel -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<span class="accordian-caret">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+												Market
+											</a>
+										</span>	
+									</h4>
+								</div><!-- End of panel heading -->
+								<div id="collapseTwo" class="panel-collapse collapse">
+									<div class="panel-body">
+										<p>
+											{{ organization.custom.concept|default('') }}
+										</p>
+									</div><!-- End of panel body -->
+								</div><!-- End of panel collapse -->
+							</div><!-- End of second panel -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<span class="accordian-caret">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                                Management
+											</a>
+										</span>
+									</h4>
+								</div><!-- End of panel heading -->
+								<div id="collapseThree" class="panel-collapse collapse">
+									<div class="panel-body">
+
+										{% if team_members is defined %}
+											<ul class="list-unstyled">
+												{% for member in team_members %}
+												<li>
+													<h6 class="mb10" style="font-size:15px;"><b>{{ member.full_name }}</b></h6>
+													<p>{{ member.biography }}</p>
+												</li>
+												{% endfor %}
+											</ul>
+										{% endif %}
+
+									</div><!-- End of panel body -->
+								</div><!-- End of panel collapse -->
+							</div><!-- End of first panel -->
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<span class="accordian-caret">
+											<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+												Documents
+											</a>
+										</span>
+									</h4>
+								</div><!-- End of panel heading -->
+								<div id="collapseFour" class="panel-collapse collapse">
+									<div class="panel-body">
+										<table class="table table-responsive">
+											<thead>
+											  <tr>
+												<th>Uploaded</th>
+												<th>Type</th>
+												<th>Name</th>
+												<th>Action</th>
+											  </tr>
+											</thead>
+											<tbody>
+												{% for document in documents|default([]) %}
+													{% if document.tag != 'logo' %}
+														<tr>
+															<td>{{ document.created_at|date('d/m/Y') }}</td>
+															<td>{{ document.tag|default() }}</td>
+															<td>{{ document.file_name|default() }}</td>
+															<td><a class="btn btn-default" href="{{ document.url }}" target="_blank">Download</a></td>
+														</tr>
+													{% endif %}
+												{% endfor %}
+											</tbody>
+										</table>									
+									</div><!-- End of panel body -->
+								</div><!-- End of panel collapse -->
+							</div><!-- End of first panel -->
+						</div><!-- End of panel group -->
+					</div><!-- End of column -->
+				</div><!-- End of row -->
+				
+			</div><!-- End of container -->
+
+		</div><!-- End of row -->
+	</div><!-- End of container -->
+
+	<!-- begin:modal-requestinfo -->
+	<div class="modal fade" id="modal-requestinfo" tabindex="-1" role="dialog" aria-labelledby="modal-requestinfo" aria-hidden="true">
+	  <div class="modal-dialog modal-md">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title">Request Information</h4>
+	      </div>
+	      <div class="modal-body">
+              <form action="{{ path('make-investment', {'offering_id':offering.id}) }}" role="form" name="investNowForm" id="investNowForm" method="post">
+                  <div class="form-group input-group">
+                        <b>Adipisicing elit</b>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                        <textarea></textarea>
+                  </div>
+                  <div class="status error"></div>
+              </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="submit" id="btnInvestNow" class="btn btn-block branding-background btn-lg">Submit</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- end:modal-invest -->
+
+	<!-- begin:modal-investConfirmation -->
+	<div class="modal fade" id="modal-investConfirmation" tabindex="-1" role="dialog" aria-labelledby="modal-investConfirmation" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title">Confirmation</h4>
+	        
+	      </div>
+	      <div class="modal-body">
+	        {#Many thanks for your request. You will shortly receive an email guiding you through the next steps required.#}
+              Thanks for requesting further information. We will be in touch shortly.
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- end:modal-invest -->
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('bundles/app/js/css3-animate-it.js') }}"></script>
+	<script src="{{ asset('bundles/app/js/flexslider.js') }}"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// invest now
+			$("#btnInvestNow").click(function(event) {
+				event.preventDefault();
+				$('#modal-requestinfo .status').html('');
+				investNow($(this));
+			});
+			// end invest now
+		});
+		
+		function investNow(thisObj) {
+			var form = $("#investNowForm");
+			$('#btnInvestNow').val('Processing...');
+			$("#btnInvestNow").prop("disabled", "disabled");
+			$.ajax({
+				url : form.attr("action"),
+				type: "POST",
+				data : form.serialize(),
+				success: function(data, textStatus, jqXHR){//console.log(data.url);
+					if (data.status == 0) {
+                        // show Invest Confirmation Message
+                        $('#modal-investConfirmation').modal('show');
+                        $('#modal-investConfirmation').on('shown.bs.modal', function() {
+                            if( $('#modal-requestinfo').data('bs.modal')!=='undefined' && $('#modal-requestinfo').data('bs.modal').isShown)
+                                $('#modal-requestinfo').modal('hide');
+                        });
+                        $(document).on('hidden.bs.modal', '#modal-requestinfo', function(){
+                            window.location.href = data.url;
+                        });
+						window.location.href = data.url;
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown){
+				}
+			});
+		}
+	</script>
+{% endblock %}

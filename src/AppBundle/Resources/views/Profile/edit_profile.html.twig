@@ -1,0 +1,54 @@
+<form role="form" id="form_edit_profile" action="{{ path('my_profile') }}" method="POST">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Edit Profile</h4> </div>
+    <div class="modal-body">
+		<div class="row">
+			<div class="col-sm-6">
+				{#<div class="form-group">#}
+					{#<div class="row">#}
+						{#<div class="col-sm-6">#}
+							{#<label>First name *</label>#}
+							{#{{ form_widget(userInfoForm.given_name,{'attr':{'class':'form-control'} }) }}#}
+						{#</div>#}
+						{#<div class="col-sm-6">#}
+							{#<label>Last name *</label>#}
+							{#{{ form_widget(userInfoForm.family_name,{'attr':{'class':'form-control'} }) }}#}
+						{#</div>#}
+					{#</div>#}
+				{#</div>#}
+				<div class="form-group">
+					<label>Biography</label>
+					{{ form_widget(userInfoForm.biography,{'attr':{'class':'form-control'} }) }}
+				</div>
+				{#<div class="form-group">#}
+					{#<label>Organization Name</label>#}
+					{#{{ form_widget(userInfoForm.organization_name,{'attr':{'class':'form-control'} }) }}#}
+				{#</div>#}
+				{#<div class="form-group">#}
+					{#<label>Job Title</label>#}
+					{#{{ form_widget(userInfoForm.position,{'attr':{'class':'form-control'} }) }}#}
+				{#</div>#}
+				<div class="form-group">
+					<label>Phone Number</label>
+					{{ form_widget(userInfoForm.phone_1,{'attr':{'class':'form-control'} }) }}
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label>Full Address</label>
+					{{ form_widget(userInfoForm.address.building,{'attr':{'class':'form-control', 'placeholder' : 'Building Name/Number'} }) }}
+					{{ form_widget(userInfoForm.address.street_address,{'attr':{'class':'form-control', 'placeholder' : 'Street Address'} }) }}
+					{{ form_widget(userInfoForm.address.city,{'attr':{'class':'form-control', 'placeholder' : 'City'} }) }}
+					{{ form_widget(userInfoForm.address.region,{'attr':{'class':'form-control', 'placeholder' : 'Region'} }) }}
+					{{ form_widget(userInfoForm.address.postal_code,{'attr':{'class':'form-control', 'placeholder' : 'Postal Code'} }) }}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<button type="submit" name="" class="btn btn-primary btn-lg" required="required">Save</button>
+			</div>
+		</div>
+    </div>
+</form>

@@ -1,0 +1,129 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block title %}Complete Registration{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('bundles/app/css/s3.upload.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid content-breather-small" id="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <h4>Investor Self-certify</h4>
+                </div><!-- End of column one -->
+                <div class="col-md-6 col-sm-6 text-right">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ path('homepage') }}">Home</a></li>
+                        <li class="active">Accreditation</li>
+                    </ol>
+                </div><!-- End of column two -->
+            </div><!-- End of row -->   
+        </div><!-- End of container -->
+    </div><!-- End of fluid container -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="completeRegistration">
+                    <h2>{% trans %}Investor Account{% endtrans %}</h2>
+
+                    <form id="investorForm" name="investorForm" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>
+                                    <input id="HNW_individual" name="accreditation_form[HNW_individual]" value="HNW Individual" type="checkbox"> HNW individual - I am a certified high net worth individual because at least one of the following applies
+                                </label>
+                                <ul class="investors">
+                                    <li>
+                                        <label>
+                                            <input name="accreditation_form[HNW_individual_opt]" type="radio" value="1"> I had, during the financial year immediately preceding the date below, an annual income to the value of £100,000 or more
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input name="accreditation_form[HNW_individual_opt]" type="radio" value="2"> I held, throughout the financial year immediately preceding the date below, net assets to the value of £250,000 or more. Net assets for these purposes do not include:
+                                            <ul>
+                                                <li>The property which is my primary residence or any loan secured on that residence</li>
+                                                <li>Any rights of mine under a qualifying contract of insurance within the meaning of the Financial Services and Markets Act 2000 (Regulated Activities) Order 2001</li>
+                                                <li>Any benefits (in the form of pensions or otherwise) which are payable on the termination of my service or on my death or retirement and to which I am (or my dependants are), or may be, entitled.</li>
+                                            </ul>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <label>
+                                    <input id="self_certified_investor" name="accreditation_form[self_certified_investor]" type="checkbox" value="Self-Certified Investor"> Self-Certified investor - I am a self-certified sophisticated investor because at least one of the following applies
+                                </label>
+                                <ul class="investors">
+                                    <li>
+                                        <label>
+                                            <input name="accreditation_form[self_certified_investor_opt]" type="radio" value="1"> I am a member of a network or syndicate of business angels and have been so for at least the last six months prior to the date below
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input name="accreditation_form[self_certified_investor_opt]" type="radio" value="2"> I have made more than one investment in an unlisted company in the two years prior to the date below
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input name="accreditation_form[self_certified_investor_opt]" type="radio" value="3"> I am working, or have worked in the two years prior to the date below, in a professional capacity in the private equity sector, or in the provision of finance for small and medium enterprises
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label>
+                                            <input name="accreditation_form[self_certified_investor_opt]" type="radio" value="4"> I am currently, or have been in the two years prior to the date below, a director of a company with an annual turnover of at least £1 million.
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {{ form_widget(form.additional_type) }}
+                        {{ form_widget(form.info.investor_type) }}
+                        <div class="status"></div>
+                        <div class="text-center">
+                            <button id="investorBtn" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!-- End of container -->
+
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/app/js/s3.upload.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/js/jquery.validate.min.js') }}"></script>\
+    <script type="text/javascript">
+        var HNW_individual = $('#HNW_individual');
+        var self_certified_investor = $('#self_certified_investor');
+        var accreditation_type_additional_type = $('#accreditation_type_additional_type');
+        var accreditation_type_info_investor_type = $('#accreditation_type_info_investor_type');
+        $('input:checkbox', '#investorForm').on('change', function(){
+            if(HNW_individual.is(':checked') == false && self_certified_investor.is(':checked') == false){
+                self_certified_investor.prop('disabled', false);
+                HNW_individual.prop('disabled', false);
+                accreditation_type_additional_type.val('');
+                accreditation_type_info_investor_type.val('');
+            }else{
+                if(HNW_individual.is(':checked') == true){
+                    self_certified_investor.prop('disabled', true);
+                    accreditation_type_additional_type.val(HNW_individual.val());
+                    accreditation_type_info_investor_type.val($('input:radio[name="accreditation_form[HNW_individual_opt]"]:checked').val());
+                    $('input:radio[name="accreditation_form[HNW_individual_opt]"]').on('change',function(){
+                        accreditation_type_info_investor_type.val($('input:radio[name="accreditation_form[HNW_individual_opt]"]:checked').val());
+                    });
+                }else if(self_certified_investor.is(':checked') == true){
+                    HNW_individual.prop('disabled', true);
+                    accreditation_type_additional_type.val(self_certified_investor.val());
+                    accreditation_type_info_investor_type.val($('input:radio[name="accreditation_form[self_certified_investor_opt]"]:checked').val());
+                    $('input:radio[name="accreditation_form[self_certified_investor_opt]"]').on('change',function(){
+                        accreditation_type_info_investor_type.val($('input:radio[name="accreditation_form[self_certified_investor_opt]"]:checked').val());
+                    });
+                }
+            }
+        });
+    </script>
+{% endblock %}

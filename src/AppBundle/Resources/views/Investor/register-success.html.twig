@@ -1,0 +1,41 @@
+{% extends 'CVSeismicBundle::seismic_network.html.twig' %}
+
+{% block header %}
+    {% include('CVSeismicBundle:Common:header.html.twig') with { active :'' } %}
+{% endblock %}
+
+{% block bodyContent %}
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="completeRegistration">
+					<div class="highlight mb30">
+					<div class="bg">
+						<h2 class="mb10">{% trans %}Thank you for signing up!{% endtrans %}</h2>
+						<p class="mb10">{% trans %}Please check your email and click the <b>Email Verification</b> link in the email we just sent you. If you don’t see the email then please check your Spam box.{% endtrans %}</p>
+					</div>
+					</div>
+					<div class="mb30">
+						<h3 class="title mb30">{% trans %}What happens after I activate my account? {% endtrans %}</h3>
+						<p class="mb20">{% trans %}Once you have verified your email address you will be taken to a page where you can complete the registration process by filling out the rest of your information.{% endtrans %}</p>
+						<p class="mb20">{% trans %}Some features may not be available until you have completed the registration process.{% endtrans %}</p>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End of container -->
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/cvseismic/js/bootstrap/bootstrap.js') }}"></script>
+    <script src="{{ asset('bundles/cvseismic/js/css3-animate-it.js') }}"></script>
+    <script src="{{ asset('bundles/cvseismic/js/bootstrap-hover-dropdown.js') }}"></script>
+    <script src="{{ asset('bundles/cvseismic/js/modernizr.js') }}"></script>
+    <script src="{{ asset('bundles/cvseismic/js/Slickform.js') }}"></script>
+    <!-- Google maps api -->
+    <script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.7"></script>
+    <script src="{{ asset('bundles/cvseismic/js/maps.js') }}"></script>
+    <script src="{{ asset('bundles/cvseismic/js/scripts.js') }}"></script>
+{% endblock %}

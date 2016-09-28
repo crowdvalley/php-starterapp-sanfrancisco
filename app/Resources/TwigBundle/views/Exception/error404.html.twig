@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Crowd Valley">
+    <title>{% block title %}Crowd Valley Starter App{% endblock %}</title>
+
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic|Playfair+Display:400,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap -->
+    <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/app/css/font-awesome.min.css') }}" rel="stylesheet">
+
+    {% block stylesheets %}{% endblock %}
+    <link href="{{ asset('bundles/app/css/style.css') }}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="{{ asset('bundles/app/js/html5shiv.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/respond.min.js') }}"></script>
+    <![endif]-->
+    <script src="{{ asset('bundles/app/js/modernizr.custom.min.js') }}"></script>
+</head>
+
+<body>
+{% block navigation %}
+    <div class="preloader"></div>
+    <header class="header transp sticky"> <!-- available class for header: .sticky .center-content .transp -->
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('bundles/app/images/crowdvalley-logo.png') }}" alt="CrowValley"></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if active is not defined %}
+                            {% set active = '' %}
+                        {% endif %}
+                        <li  class="{% if active == 'home' %}active{% endif %}"><a href="{{ path('homepage') }}">Home</a></li>
+                        <li class="dropdown {% if active == 'user' %}active{% endif %}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Onboarding<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Log In</a></li>
+                                <li><a href="">Sign Up</a></li>
+                                <li><a href="">Email Verification</a></li>
+                                <li><a href="">Accept Terms</a></li>
+                                <li><a href="">Complete Registration</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown {% if active == 'kyc' %}active{% endif %}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">KYC/AML<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('gbgroup') }}">GBGroup</a></li>
+                                <li><a href="{{ path('contego') }}">Contego</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown {% if active == 'offerings' %}active{% endif %}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Offerings<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('organizations') }}">Organizations</a></li>
+                                <li><a href="{{ path('offerings_v1') }}">Offerings v1</a></li>
+                                <li><a href="{{ path('offerings_v2') }}">Offerings v2</a></li>
+                                <li><a href="{{ path('offerings_v3') }}">Offerings v3</a></li>
+                                <li><a href="">Deal Room</a></li>
+                                <li><a href="">Secondary Market</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown {% if active == 'profile' %}active{% endif %}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Profile<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">My Profile</a></li>
+                                <li><a href="">My Investments</a></li>
+                                <li><a href="">My Wallet</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown {% if active == 'raise_capital' %}active{% endif %}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Raise Capital<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">My Organizations</a></li>
+                                <li><a href="">My Offerings</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown {% if active == 'contact' %}active{% endif %}">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('about') }}">About </a></li>
+                                <li><a href="{{ path('contact') }}">Contact</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+                <div class="mg-search-box-cont pull-right">
+                    <a href="#" class="mg-search-box-trigger"><i class="fa fa-code"></i></a>
+                    <div class="mg-search-box">
+							<span class="text-left">
+								<h4>Controller</h4>
+								<pre>
+									<code>
+                                        GET /public/featuredOfferings
+                                        POST /users
+                                        Other code
+                                    </code>
+								</pre>
+								<hr>
+								<h4>View</h4>
+								<pre>
+									<code>
+                                        GET /public/featuredOfferings
+                                        POST /users
+                                        Other code
+                                    </code>
+								</pre>
+							</span>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header>
+
+{% endblock %}
+
+{% block body %}
+    <div class="mg-page-title parallax">
+        <div class="mg-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mg-404-error-txt">
+                            <div class="mg-404-badg pull-left">
+                                <strong>404</strong>
+                                <span>Error</span>
+                            </div>
+                            <div class="mg-404-txt-search">
+                                <strong>Sorry, Your requested page is not found.</strong>
+                                <p>May be you will like to search Rooms for Booking.</p>
+                                <div class="mg-404-search-form">
+                                    <form>
+                                        <input type="text" name="s" class="form-control" placeholder="Type Keyword...">
+                                        <button type="submit" class="btn btn-main"><i class="fa fa-search"></i> Search</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+
+    <footer class="mg-footer">
+        <div class="mg-footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 col-sm-12">
+                        <div class="widget">
+                            <h2 class="mg-widget-title">Contact US</h2>
+                            <strong>Crowd Valley</strong><br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <address>
+                                        One Market Plaza, Spear Tower<br>
+                                        San Francisco, CA 94105<br>
+                                        UNITED STATES<br>
+                                    </address>
+                                    <p>
+                                        +1 (415) 580 0087<br>
+                                    </p>
+
+                                    <p>
+                                        sales[at]crowdvalley.com
+                                    </p>
+                                </div>
+                                <div class="col-md-4">
+                                    <address>
+                                        1 Ropemaker Street, Moorgate<br>
+                                        London<br>
+                                        UNITED KINGDOM<br>
+                                    </address>
+                                </div>
+                                <div class="col-md-4">
+                                    <address>
+                                        3905 Two Exchange Square<br>
+                                        8 Connaught Place<br>
+                                        HONG KONG<br>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget">
+                            <h2 class="mg-widget-title">Social Media</h2>
+                            <ul class="mg-footer-social">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mg-copyright">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <ul class="mg-footer-nav">
+                            <li><a href="{{ path('homepage') }}">Home</a></li>
+                            <li><a href="{{ path('about') }}">About</a></li>
+                            <li><a href="#">Rooms</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="{{ path('contact') }}">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <p>&copy; 2016 <a href="http://www.crowdvalley.com">Crowd Valley</a>. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}
+<script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/jssor.slider.mini.js') }}"></script>
+<script src="{{ asset('bundles/app/js/classie.js') }}"></script>
+<script src="{{ asset('bundles/app/js/selectFx.js') }}"></script>
+<script src="{{ asset('bundles/app/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/starrr.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/nivo-lightbox.min.js') }}"></script>
+<script src="{{ asset('bundles/app/js/jquery.shuffle.min.js') }}"></script>
+
+<script src="{{ asset('bundles/app/js/jquery.parallax-1.1.3.js') }}"></script>
+<script src="{{ asset('bundles/app/js/script.js') }}"></script>
+</body>
+</html>
